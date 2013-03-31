@@ -21,7 +21,7 @@ Unpack `cu-vim-VERSION.tgz` and the content of extracted `code_upstairs-VERSION`
 to your `~/.vim/`. 
 
 Current version _Code Upstairs_ works only with **C** and **Python**. 
-And you need to have installed `cscope` and/or `pycscope`. 
+And you need to have installed `cscope` and `pycscope`. 
 
 Usage
 -----
@@ -68,9 +68,3 @@ Default keybindings can be change using variables given in parenthesis.
   backward. (`CUkeyNextFunction` and `CUkeyPrevFunction`)
 + `<space>b` will jump to function definition (`CUkeyJumpToFunction`)
 + `<space>/` will highlight function name in vim window (`CUkeyHighlightFunction`)
-
-
-
-
-
-
