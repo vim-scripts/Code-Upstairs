@@ -36,15 +36,19 @@ endif
 
 
 function! CUinitbridge(args)
-  python vim.command( "return 0" if code_upstairs.init( vim.eval("a:args") ) else "return 1" )
+  python vim.command( "return %d" % code_upstairs.init( vim.eval("a:args") )  )
 endfunction
 
 " TODO double initialization error
 command! -nargs=? -complete=dir CUinit call CUinit(<f-args>)
 function! CUinit(...)  
   let l:init_result = CUinitbridge(a:000)
-  if l:init_result
-    echom "Code Upstairs initialization error: missing source files"
+  if l:init_result == 1
+    echom "Code Upstairs initialization error: missing sources (project) files "
+  elseif l:init_result == 2
+    echom "Code Upstairs initialization error: cannot lunch `cscope` "
+  elseif l:init_result == 3
+    echom "Code Upstairs initialization error: cannot lunch `pycscope` "
   else
     augroup code_upstairs
       autocmd!

@@ -8,8 +8,8 @@ aim of this plugin is to make code more easily readable and understandable.
 In other words it is trying to put big projects more under control.
 
 Normally readability of long single function is preserved by using indentation of
-code lines. This plugin provides kind of _indentation_ at higher level -
-_indentation_ of whole functions. 
+code lines. This plugin provides kind of *indentation* at higher level -
+*indentation* of whole functions. 
 
 User can see fairly easily how current function is dependent upon others. He
 will also get structure of all functions in code in a tree layout if code is clearly
@@ -18,10 +18,13 @@ implemented. So therefor _Code Upstairs_ is also kind of quality controller.
 Installation
 ------------
 Unpack `cu-vim-VERSION.tgz` and the content of extracted `code_upstairs-VERSION` directory move
-to your `~/.vim/`. 
+to your `~/.vim/` or whole directory to Pathogen corner. 
 
 Current version _Code Upstairs_ works only with **C** and **Python**. 
-And you need to have installed `cscope` and `pycscope`. 
+For **C** you need to have installed `cscope` and
+for **Python** you need `cscope` along with `pycscope` 
+
+Vim has to be compiled with `python` support. 
 
 Usage
 -----
@@ -32,10 +35,13 @@ Open some file of your project and call:
 where `<directory>` is the root of your project. 
 If skipped current directory will be used.
 
+Statusline will appear if it was disabled, and you can see 
+functions structure there,
+but only when cursor is in some function body.
+
 To turn off _Code Upstairs_ use:
 
     :CUshutdown
-
 
 Statusline
 ----------
@@ -43,20 +49,19 @@ Functions structure is shown in statusline.
 Because of limited space statusline is divided to layers. 
 Following layers are shown in order from left to right:
 
-+ __(-)__ layer showing original vim statusline
++ __(-)__ layer showing original vim statusline (like filename and cursor position)
 + __(P)__ layer with parents of current function. Parent is a function from
-  which current function is called.
+    which current function is called.
 + __(S)__ siblings layer shows functions which are on the same level with
-  current function looking from parent perspective (Frankly saying siblings are
-  __pure child functions__ of parent function)
+   current function looking from parent perspective (Frankly saying siblings are
+   __pure child functions__ of parent function, check out next layer!)
 + __(C)__ children layer shows __pure child functions__ of current function.
-  __Pure child function__ is a function which is called only from one parent. 
+   __Pure child function__ is a function which is called only from one parent. 
 + __(XX)__ (where `XX` is a number) layer shows children functions in distance
-  `XX` from current function. Those are not __pure child
-  functions__, they have more than one parent and therefore theirs calls are
-  distributed over code. Distance `XX` tells how far they are distributed.
-  Further functions distances can mean not clear implementation or code design.
-
+   `XX` from current function. Those are not __pure child
+   functions__, they have more than one parent and therefore theirs calls are
+   distributed over code. Distance `XX` tells how far they are distributed.
+   Further functions distances can mean not clear implementation or code design.
 
 Keybindings
 -----------
